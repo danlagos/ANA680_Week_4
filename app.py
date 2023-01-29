@@ -6,7 +6,7 @@ import os
 
 app = Flask(__name__)
 
-filename = 'dectree.pkl'
+filename = 'randfor.pkl'
 
 model = joblib.load(filename)
 
@@ -18,12 +18,18 @@ def index():
 @app.route('/predict', methods=['POST'])
 
 def predict():
-    alcohol = request.form['alcohol']
-    density = request.form['density']
-    volatile_acidity = request.form['volatile_acidity']
-    chlorides = request.form['chlorides']
-          
-    pred = model.predict(np.array([[alcohol, density, volatile_acidity, chlorides]], dtype=float))
+    Area = request.form['Area']
+    Perimeter = request.form['Perimeter']
+    MajorAxisLength = request.form['MajorAxisLength']
+    MinorAxisLength = request.form['MinorAxisLength']
+
+    ConvexArea = request.form['ConvexArea']
+    EquivDiameter = request.form['EquivDiameter']
+    roundness = request.form['roundness']
+    ShapeFactor1 = request.form['ShapeFactor1']
+    ShapeFactor2 = request.form['ShapeFactor2']   
+
+    pred = model.predict(np.array([[Area, Perimeter, MajorAxisLength, MinorAxisLength, ConvexArea, EquivDiameter, roundness, ShapeFactor1, ShapeFactor2]], dtype=float))
     print(pred)
     return render_template('index.html', predict=str(pred))
 
