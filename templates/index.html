@@ -1,90 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Dry Bean Classification:  Random Forrest</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
+    <head>
+        <meta charset="UTF-8">
+        <title>Dry Bean Classification:  Random Forrest</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                text-align: center;
+            }
+        
+            h1 {
+                color: #4CAF50;
+            }
+        
+            h4 {
+                color: #1E90FF;
+            }
+        
+            form {
+                display: inline-block;
+                text-align: left;
+            }
+        
+            input[type="text"] {
+                width: 200px;
+                padding: 12px 20px;
+                margin: 8px 0;
+                box-sizing: border-box;
+                border: 2px solid #ccc;
+                border-radius: 4px;
+            }
+        
+            input[type="submit"] {
+                width: 100px;
+                background-color: #4CAF50;
+                color: white;
+                padding: 14px 20px;
+                margin: 8px 0;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+        
+            input[type="submit"]:hover {
+                background-color: #45a049;
+            }
+            li {
+                list-style-type: none;
+            }
+        </style>
     
-        h1 {
-            color: #4CAF50;
-        }
-    
-        h4 {
-            color: #1E90FF;
-        }
-    
-        form {
-            display: inline-block;
-            text-align: left;
-        }
-    
-        input[type="text"] {
-            width: 200px;
-            padding: 12px 20px;
-            margin: 8px 0;
-            box-sizing: border-box;
-            border: 2px solid #ccc;
-            border-radius: 4px;
-        }
-    
-        input[type="submit"] {
-            width: 100px;
-            background-color: #4CAF50;
-            color: white;
-            padding: 14px 20px;
-            margin: 8px 0;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-    
-        input[type="submit"]:hover {
-            background-color: #45a049;
-        }
-        li {
-            list-style-type: none;
-        }
-    </style>
-  
-</head>
-<body>
-    <h1>Random Forrest Model</h1>
-    <h4>Author:  Daniel Lagos</h4>
-    <p>Random Forrest that will classify dry beans based on 9 inputs.  7 possible classificaitons</p>
-    <p>All inputs are numbers, they can have decimal's</p>
-    <p>Data set from UCI Machine Learning Repository:  Dry Bean Dataset.  7 different types of dry beans were used in this classification problem.  A computer vision system captured images out of which 16 different features were quantified.  A total of 13,611 observations were used in this research.  The design of the original research seemed to combine computer vision and machine learning for this classification problem, this model attempts to recreate the machine learning portion of the original research.  Original research did not consider a random forest, therefore, this assignment will focus on a random forest in the classification problem.</p>
-    <p>Link to dataset: <a href="https://archive.ics.uci.edu/ml/datasets/Dry+Bean+Dataset">here</a></p>
-    <p>Link to original research paper: <a href="https://www.sciencedirect.com/science/article/abs/pii/S0168169919311573?via%3Dihub">here</a></p>
-    <form action="{{ url_for('predict')}}" method="POST">
-        Area:  <input type="text" name="Area"></br>
-        Perimeter:  <input type="text" name="Perimeter"></br>
-	    MajorAxisLength:  <input type="text" name="MajorAxisLength"></br>
-	    MinorAxisLength:  <input type="text" name="MinorAxisLength"></br>
-        ConvexArea:  <input type="text" name="ConvexArea"></br>
-        EquivDiameter:  <input type="text" name="EquivDiameter"></br>
-	    roundness:  <input type="text" name="roundness"></br>
-	    ShapeFactor1:  <input type="text" name="ShapeFactor1"></br>
-        ShapeFactor2:  <input type="text" name="ShapeFactor2"></br>
-        <input type=submit value=Submit>
-   </form>
-    <h2>Prediction: {{ predict }}</h2>
-    <p>Classifications:</p>
-    <p>0 = DERMASON</p>
-    <p>1 = SIRA</p>
-    <p>2 = SEKER</p>
-    <p>3 = HOROZ</p>
-    <p>4 = CALI</p>
-    <p>5 = BARBUNYA</p>
-    <p>6 = BOMBAY</p>
-    <h2>Software & Frameworks</h2>
-    <p>Python, Pandas, Numpy, Seaborn, Matplotlib, Scikit-learn</p>
-    <p>Docker for containerization</p>
-    <p>Image can be found in my Docker Hub Registry:  lagosd</p>
-    <p>html and css for front-end</p>
-    <p>Flask for back-end</p>
-</body>
+    </head>
+    <body>
+        <h1>Random Forrest Model</h1>
+        <h4>Author:  Daniel Lagos</h4>
+        <p>Random Forrest that will classify dry beans based on 9 inputs.  7 possible classificaitons</p>
+        <p>All inputs are numbers, they can have decimal's</p>
+        <p>Data set from UCI Machine Learning Repository:  Dry Bean Dataset.  7 different types of dry beans were used in this classification problem.  A computer vision system captured images out of which 16 different features were quantified.  A total of 13,611 observations were used in this research.  The design of the original research seemed to combine computer vision and machine learning for this classification problem, this model attempts to recreate the machine learning portion of the original research.  Original research did not consider a random forest, therefore, this assignment will focus on a random forest in the classification problem.</p>
+        <p>Link to dataset: <a href="https://archive.ics.uci.edu/ml/datasets/Dry+Bean+Dataset">here</a></p>
+        <p>Link to original research paper: <a href="https://www.sciencedirect.com/science/article/abs/pii/S0168169919311573?via%3Dihub">here</a></p>
+        <form action="{{ url_for('predict')}}" method="POST">
+            Area:  <input type="text" name="Area"></br>
+            Perimeter:  <input type="text" name="Perimeter"></br>
+            MajorAxisLength:  <input type="text" name="MajorAxisLength"></br>
+            MinorAxisLength:  <input type="text" name="MinorAxisLength"></br>
+            ConvexArea:  <input type="text" name="ConvexArea"></br>
+            EquivDiameter:  <input type="text" name="EquivDiameter"></br>
+            roundness:  <input type="text" name="roundness"></br>
+            ShapeFactor1:  <input type="text" name="ShapeFactor1"></br>
+            ShapeFactor2:  <input type="text" name="ShapeFactor2"></br>
+            <input type=submit value=Submit>
+    </form>
+        <h2>Prediction: {{ predict }}</h2>
+        <p>Classifications:</p>
+        <p>0 = DERMASON</p>
+        <p>1 = SIRA</p>
+        <p>2 = SEKER</p>
+        <p>3 = HOROZ</p>
+        <p>4 = CALI</p>
+        <p>5 = BARBUNYA</p>
+        <p>6 = BOMBAY</p>
+        <h2>Software & Frameworks</h2>
+        <p>Python, Pandas, Numpy, Seaborn, Matplotlib, Scikit-learn</p>
+        <p>Docker for containerization</p>
+        <p>Image can be found in my Docker Hub Registry:  lagosd</p>
+        <p>html and css for front-end</p>
+        <p>Flask for back-end</p>
+    </body>
 </html>
